@@ -1,11 +1,8 @@
-FROM ubuntu:eoan
+FROM debian:buster
 
-RUN apt-get update -q && apt-get install -qy ca-certificates mailutils postfix
+RUN apt-get update -q && apt-get install -qy ca-certificates mailutils postfix procps
 
 COPY run.sh /usr/local/bin
-#STOPSIGNAL SIGKILL
-
-#/usr/lib/postfix/sbin/master -i -d
 
 EXPOSE 25
 

@@ -4,6 +4,13 @@ set -e
 # Setup the chroot
 /usr/lib/postfix/configure-instance.sh
 
+# fixup syslogging for smtp service.
+# currently unsure if this is a misconfig somewhere or a postfix bug but the
+# "smtp" daemon is trying to open the postlog socket with an absolute path from
+# inside its choort
+install -d -o postfix -g postdrop -m 2710 /var/spool/postfix/var/spool/postfix/public/
+ln -s --relative /var/spool/postfix/public/postlog  /var/spool/postfix/var/spool/postfix/public/
+
 # Run logging daemon
 #echo "postlog   unix-dgram n  -       n       -       1       postlogd" >> /etc/postfix/master.cf
 
@@ -62,4 +69,4 @@ for key in $(postconf | awk '{print toupper($1)}' | grep -E '^[A-Z_]+$') ; do
     fi
 done
 
-exec /usr/lib/postfix/sbin/master -i
+exec postfix start-fg
