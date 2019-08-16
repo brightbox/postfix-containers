@@ -62,4 +62,4 @@ for key in $(postconf | awk '{print toupper($1)}' | grep -E '^[A-Z_]+$') ; do
     fi
 done
 
-exec /usr/lib/postfix/sbin/master -d
+exec /usr/lib/postfix/sbin/master -i

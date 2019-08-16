@@ -9,4 +9,4 @@ COPY run.sh /usr/local/bin
 
 EXPOSE 25
 
-ENTRYPOINT /usr/local/bin/run.sh
+CMD ["/usr/local/bin/run.sh"]
