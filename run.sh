@@ -58,7 +58,7 @@ fi
 for key in $(postconf | awk '{print toupper($1)}' | grep -E '^[A-Z_]+$') ; do
     if [ ! -z "${!key}" ] ; then
         echo "Setting ${key,,} = ${!key}"
-        postconf -e ${key,,}=${!key}
+        postconf -e "${key,,}"="${!key}"
     fi
 done
 
