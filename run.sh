@@ -42,14 +42,12 @@ if [[ ! -z "$TLS" ]]; then
 fi
 
 if [[ ! -z "$SASL_AUTH" ]]; then
-	cat >> /etc/postfix/main.cf <<- EOF
-	smtp_sasl_auth_enable = yes
-	smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
-	smtp_sasl_security_options = noanonymous
-	EOF
+  postconf -e smtp_sasl_auth_enable=yes
+  postconf -e smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
+  postconf -e smtp_sasl_security_options=noanonymous
 
 	# generate the SASL password map
-	echo "$RELAY $SASL_AUTH" > /etc/postfix/sasl_passwd
+	echo "$RELAYHOST $SASL_AUTH" > /etc/postfix/sasl_passwd
 
 	# generate a .db file
 	postmap /etc/postfix/sasl_passwd
