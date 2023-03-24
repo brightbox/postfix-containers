@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update -q && apt-get install -qy ca-certificates mailutils postfix procps
 
