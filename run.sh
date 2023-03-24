@@ -37,8 +37,12 @@ if [[ ! -z "$TLS" ]]; then
 	cat >> /etc/postfix/main.cf <<- EOF
 	smtp_use_tls = yes
 	smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
-  smtp_tls_loglevel = 2
+	smtp_tls_loglevel = 2
 	EOF
+fi
+
+if [[ ! -z "$SMTPD_USE_TLS" ]]; then
+	postconf -e smtpd_use_tls=$SMTPD_USE_TLS
 fi
 
 if [[ ! -z "$SASL_AUTH" ]]; then
