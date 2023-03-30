@@ -41,8 +41,8 @@ if [[ ! -z "$TLS" ]]; then
 	EOF
 fi
 
-if [[ ! -z "$SMTPD_USE_TLS" ]]; then
-	postconf -e smtpd_use_tls=$SMTPD_USE_TLS
+if [[ ! -z "$SMTPD_TLS_SECURITY_LEVEL" ]]; then
+        postconf -e smtpd_tls_security_level=$SMTPD_TLS_SECURITY_LEVEL
 fi
 
 if [[ ! -z "$SASL_AUTH" ]]; then
