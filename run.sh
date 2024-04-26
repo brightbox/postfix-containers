@@ -9,7 +9,7 @@ set -e
 # "smtp" daemon is trying to open the postlog socket with an absolute path from
 # inside its choort
 install -d -o postfix -g postdrop -m 2710 /var/spool/postfix/var/spool/postfix/public/
-ln -s --relative /var/spool/postfix/public/postlog  /var/spool/postfix/var/spool/postfix/public/
+ln -fs --relative /var/spool/postfix/public/postlog  /var/spool/postfix/var/spool/postfix/public/
 
 # Run logging daemon
 #echo "postlog   unix-dgram n  -       n       -       1       postlogd" >> /etc/postfix/master.cf
