@@ -63,9 +63,9 @@ if [[ ! -z "$SASL_AUTH" ]]; then
 	chmod 600 /etc/postfix/sasl_passwd.db
 fi
 
-if [[ ! -z "$HEADER_CHECKS" ]]; then
+if [[ ! -z "$HEADER_CHECK_RULES" ]]; then
     postconf -e header_checks=regexp:/etc/postfix/header_checks
-    echo "$HEADER_CHECKS" > /etc/postfix/header_checks
+    echo "$HEADER_CHECK_RULES" > /etc/postfix/header_checks
     postmap /etc/postfix/header_checks
 fi
 
